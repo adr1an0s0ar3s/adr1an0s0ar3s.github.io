@@ -9,8 +9,7 @@
     "gh-pages": "^6.1.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-scripts": "5.0.1",
-    "web-vitals": "^2.1.4"
+    "react-scripts": "5.0.1"
   },
   "scripts": {
     "predeploy": "npm run build",
@@ -38,5 +37,8 @@
       "last 1 safari version"
     ]
   },
-  "homepage": "https://adr1an0s0ar3s.github.io"
+  "homepage": "https://adr1an0s0ar3s.github.io",
+  "devDependencies": {
+    "tailwindcss": "^3.3.5"
+  }
 }
