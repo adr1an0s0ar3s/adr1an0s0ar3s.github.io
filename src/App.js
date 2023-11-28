@@ -30,7 +30,6 @@ export default function App() {
     }, []);
 
     useEffect(() => {
-        console.log(repos);
         setHeaderOptions({
             Projects: repos,
             ...HeaderOptions,

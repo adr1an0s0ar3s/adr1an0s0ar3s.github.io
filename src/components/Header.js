@@ -5,9 +5,9 @@ import HeaderOption from "./HeaderOption";
 export default function Header({ options }) {
     return (
         <header className="bg-gray-200">
-            <nav className="mx-auto flex max-w-7xl items-center justify-between p-6 px-8">
+            <nav className="mx-auto flex flex-col sm:flex-row max-w-7xl items-center justify-between p-6 px-8">
                 <div className="flex flex-1">
-                    <img className="h-10 w-auto" src={logo} alt=""/>
+                    <img className="h-10 w-auto mb-8 sm:mb-0" src={logo} alt=""/>
                 </div>
                 <div className="flex gap-x-12">
                     {Object.keys(options).map(option => {
