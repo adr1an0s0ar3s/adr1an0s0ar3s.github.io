@@ -1,37 +1,53 @@
+import { useEffect, useState } from "react";
+import Header from "./components/Header";
+import { GitHubProfilePictureUrl, HeaderOptions, ProfileCardLinks, ProfileCardName, ProfileCardRole } from "./data/Data";
+import ProfileCard from "./components/ProfileCard";
+
 export default function App() {
+    const [error, setError] = useState(null);
+    const [isLoaded, setIsLoaded] = useState(false);
+    const [repos, setRepos] = useState([]);
+    const [headerOptions, setHeaderOptions] = useState(HeaderOptions);
 
-  const goNextPage = () => {
-    document.body.style.overflow = "hidden";
-    window.scrollTo({
-      top: window.innerHeight,
-      behavior: 'smooth',
-    });
-  }; 
+    useEffect(() => {
+        fetch("https://api.github.com/users/adr1an0s0ar3s/repos")
+            .then(res => res.json())
+            .then(
+                (result) => {
+                    setIsLoaded(true);
+                    let fetched_repos = result.map((item => ({
+                        label: item.name,
+                        description: item.description ? item.description : "",
+                        href: item.html_url,
+                    })));
+                    setRepos(fetched_repos);
+                },
+                (error) => {
+                    setIsLoaded(true);
+                    setError(error);
+                }
+            )
+    }, []);
 
-  return (
-    <div className="bg-gradient-to-r from-black to-stone-800">
-      <div className="flex h-screen items-center">
-        <div className="w-max">
-          <h1 className="ml-32 text-9xl font-pixel text-white animate-typing overflow-hidden whitespace-nowrap border-r-2 border-r-white pr-5">
-            echo "Hello Friend"
-          </h1>
-        </div>
-        <button className="text-white absolute left-1/2 bottom-5 animate-bounce hover:text-stone-500" onClick={goNextPage}>
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-12 h-12">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 13.5L12 21m0 0l-7.5-7.5M12 21V3" />
-          </svg>
-        </button>
-      </div>
-      <div className="flex h-screen items-center">
-        <h1 className="ml-32 text-9xl font-pixel text-white animate-typing overflow-hidden whitespace-nowrap border-r-2 border-r-white pr-5">
-          Here's my info... # TODO
-        </h1>
-        <button className="text-white absolute left-1/2 top-5 animate-bounce hover:text-stone-500" onClick={goNextPage}>
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-12 h-12">
-            <path strokeLinecap="round" strokeLinejoin="round" d="M12 19.5v-15m0 0l-6.75 6.75M12 4.5l6.75 6.75" />
-          </svg>
-        </button>
-      </div>
-    </div>
-  );
+    useEffect(() => {
+        console.log(repos);
+        setHeaderOptions({
+            Projects: repos,
+            ...HeaderOptions,
+        });
+    }, [repos]);
+
+    return (
+        <>
+            <Header options={headerOptions} />
+            <body className="h-screen bg-gradient-to-b from-gray-200 to-white">
+                <div class="flex items-center h-screen w-full justify-center">
+                    <div class="max-w-xs">
+                        <ProfileCard pictureUrl={GitHubProfilePictureUrl} name={ProfileCardName} role={ProfileCardRole} links={ProfileCardLinks}/>
+                    </div>
+                </div>
+            </body>
+        </>
+    );
 }
+
