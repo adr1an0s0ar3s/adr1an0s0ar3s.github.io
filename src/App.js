@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import Header from "./components/Header";
-import { GitHubProfilePictureUrl, HeaderOptions, ProfileCardLinks, ProfileCardName, ProfileCardRole } from "./data/Data";
+import { GitHubProfilePictureUrl, GitHubUsername, HeaderOptions, ProfileCardLinks, ProfileCardName, ProfileCardRole } from "./data/Data";
 import ProfileCard from "./components/ProfileCard";
 
 export default function App() {
@@ -10,7 +10,7 @@ export default function App() {
     const [headerOptions, setHeaderOptions] = useState(HeaderOptions);
 
     useEffect(() => {
-        fetch("https://api.github.com/users/adr1an0s0ar3s/repos")
+        fetch(`https://api.github.com/users/${GitHubUsername}/repos`)
             .then(res => res.json())
             .then(
                 (result) => {
@@ -18,7 +18,8 @@ export default function App() {
                     let fetched_repos = result.map((item => ({
                         label: item.name,
                         description: item.description ? item.description : "",
-                        href: item.html_url,
+                        url: item.html_url,
+                        language: item.language,
                     })));
                     setRepos(fetched_repos);
                 },
@@ -30,6 +31,7 @@ export default function App() {
     }, []);
 
     useEffect(() => {
+        console.log(repos);
         setHeaderOptions({
             Projects: repos,
             ...HeaderOptions,
@@ -37,16 +39,21 @@ export default function App() {
     }, [repos]);
 
     return (
-        <>
+        <div className="flex flex-col h-screen">
             <Header options={headerOptions} />
-            <body className="h-screen bg-gradient-to-b from-gray-200 to-white">
-                <div class="flex items-center h-screen w-full justify-center">
-                    <div class="max-w-xs">
-                        <ProfileCard pictureUrl={GitHubProfilePictureUrl} name={ProfileCardName} role={ProfileCardRole} links={ProfileCardLinks}/>
+            <main className="flex-1 bg-gradient-to-b from-gray-200 to-white">
+                <div className="flex items-center h-full justify-center">
+                    <div className="max-w-xs">
+                        <ProfileCard
+                            pictureUrl={GitHubProfilePictureUrl}
+                            name={ProfileCardName}
+                            role={ProfileCardRole}
+                            links={ProfileCardLinks}
+                        />
                     </div>
                 </div>
-            </body>
-        </>
+            </main>
+        </div>
     );
 }
 
