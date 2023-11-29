@@ -3,17 +3,17 @@ export const HeaderOptions = {
         {
             label: "Advanced Topics in Interaction and Multimedia",
             description: "2023-2024",
-            href: "https://adr1an0s0ar3s.github.io/feup-taim-23-24",
+            url: "https://adr1an0s0ar3s.github.io/feup-taim-23-24",
         },
         {
             label: "Interactive Graphic Systems",
             description: "2022-2023",
-            href: "https://adr1an0s0ar3s.github.io/feup-sgi",
+            url: "https://adr1an0s0ar3s.github.io/feup-sgi",
         },
         {
             label: "Computer Graphics",
             description: "2020-2021",
-            href: "https://adr1an0s0ar3s.github.io/feup-cgra",
+            url: "https://adr1an0s0ar3s.github.io/feup-cgra",
         },
     ],
     "Curriculum Vitae": "https://drive.google.com/file/d/1-ynCHfB-4NaPfCGMSGyNbwUnGZ6RkRsW/view?usp=sharing",

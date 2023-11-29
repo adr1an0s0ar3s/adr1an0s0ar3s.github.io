@@ -29,7 +29,7 @@ export default function HeaderDropdown({ label, options }) {
                 {label}
                 {expand ? <ArrowDown /> : <ArrowRight />}
             </button>
-            <div className="absolute left-1/2 transform -translate-x-1/2 z-10 mt-3 w-screen max-w-md sm:max-w-lg md:max-w-xl lg:max-w-3xl overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5" hidden={!expand}>
+            <div className="absolute left-1/2 transform -translate-x-1/2 z-10 mt-3 w-screen max-w-md sm:max-w-lg md:max-w-xl lg:max-w-3xl overflow-hidden sm:rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5" hidden={!expand}>
                 <div className="grid grid-cols-1 lg:grid-cols-2">
                     {options.map(option => {
                         return (
