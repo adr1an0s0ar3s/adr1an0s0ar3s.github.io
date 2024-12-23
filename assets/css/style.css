@@ -1,0 +1,232 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Outfit", serif;
+    font-optical-sizing: auto;
+    font-weight: 200;
+    font-style: normal;
+    background-color: #f8f6ff;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    overflow: hidden;
+}
+
+/* Style the header and navigation menu */
+.site-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px;
+    background-color: transparent;
+    text-align: center;
+    z-index: 10;
+    margin-top: 10px;
+}
+
+.site-header .navigation ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+}
+
+.site-header .navigation ul li {
+    display: inline-block;
+    position: relative;
+    margin: 0 10px;
+    padding: 10px 10px;
+}
+
+/* Hover effect only for the top-level li elements (no children) */
+.site-header .navigation > ul > li:hover {
+    background-color: #d4d4d4; /* Match the dropdown background */
+    box-shadow: 5px 5px #525252;
+}
+
+.site-header .navigation ul li a {
+    color: #333;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+/* Updated Dropdown Menu for Flex Columns */
+.site-header .navigation ul li .dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #d4d4d4; /* Dropdown background color */
+    min-width: 300px;
+    box-shadow: 5px 5px #525252;
+    padding: 10px;
+    flex-direction: column;
+    z-index: 5;
+}
+
+/* Show dropdown on hover or when the parent has active class */
+.site-header .navigation ul li:hover .dropdown-menu,
+.site-header .navigation ul li.active .dropdown-menu {
+    display: flex;
+}
+
+/* Dropdown menu items */
+.site-header .navigation ul li .dropdown-menu li {
+    margin: 5px 0;
+}
+
+.site-header .navigation ul li .dropdown-menu li a {
+    color: #333;
+    text-decoration: none;
+    font-size: 14px;
+    padding: 5px 10px;
+}
+
+.site-header .navigation ul li .dropdown-menu li a:hover {
+    text-decoration: underline;
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 1000px;
+    padding-top: 80px; /* Allow space for the fixed header */
+    margin: 20px;
+    flex-grow: 1; /* Ensure the container takes up remaining space */
+    height: calc(100vh - 80px); /* Account for header height */
+}
+
+.bio {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 900px;
+    padding: 20px;
+    margin: 10px;
+    align-items: center;
+}
+
+.bio-text {
+    flex: 1;
+    margin-right: 20px;
+    max-width: 500px;
+}
+
+.bio-text h1 {
+    font-family: "La Belle Aurore", serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 36px;
+    line-height: 42px;
+    margin: 0 0 10px 0;
+}
+
+.bio-text p {
+    font-size: 18px;
+    text-align: justify;
+}
+
+.bio-image img {
+    max-width: 250px;
+    width: 100%;
+    height: auto;
+    border-radius: 40% 60% 50% 70% / 60% 40% 50% 30%;
+}
+
+/* Media query for mobile devices */
+@media screen and (max-width: 768px) {
+    .site-header .navigation ul {
+        text-align: center;
+    }
+
+    /* Center the dropdown menu for mobile */
+    .site-header .navigation ul li .dropdown-menu {
+        position: fixed; /* Use fixed position for the dropdown */
+        left: 50%; /* Center it horizontally */
+        transform: translateX(
+            -50%
+        ); /* Offset the dropdown to be exactly centered */
+        top: 69px; /* Position it below the header */
+        max-width: 90%; /* Limit width on mobile */
+    }
+
+    .bio {
+        flex-direction: column-reverse;
+        align-items: center;
+        text-align: center;
+    }
+
+    .bio-image {
+        margin-bottom: 40px;
+    }
+}
+
+.wave {
+    animation-name: wave-animation;
+    animation-duration: 2.5s;
+    animation-iteration-count: 1; /* Animate only once */
+    animation-fill-mode: forwards; /* Maintain final state after animation */
+    transform-origin: 70% 70%; /* Pivot around the bottom-left palm */
+    display: inline-block;
+}
+
+@keyframes wave-animation {
+    0% {
+        transform: rotate(0deg);
+    }
+    10% {
+        transform: rotate(14deg);
+    }
+    20% {
+        transform: rotate(-8deg);
+    }
+    30% {
+        transform: rotate(14deg);
+    }
+    40% {
+        transform: rotate(-4deg);
+    }
+    50% {
+        transform: rotate(10deg);
+    }
+    60% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(0deg);
+    }
+}
+
+.contact-logo {
+    filter: invert(16%) sepia(0%) saturate(0%) hue-rotate(144deg)
+        brightness(94%) contrast(86%);
+    width: 26px;
+    margin: 10px;
+}
+
+.contacts {
+    margin: 10px 0;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: center;
+}
+
+.contacts a {
+    text-decoration: none;
+}
+
+.project-info {
+    color: gray;
+    white-space: nowrap;
+}
