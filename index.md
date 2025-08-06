@@ -11,7 +11,7 @@ title: Home
     <a href="https://www.linkedin.com/in/adrianosoarespt" target="_blank" title="LinkedIn">
       <img class="contact-logo" src="/assets/images/logo-linkedin.svg" alt="LinkedIn">
     </a>
-    <a href="https://github.com/adriano-soares" target="_blank" title="GitHub">
+    <a href="https://github.com/adr1an0s0ar3s" target="_blank" title="GitHub">
       <img class="contact-logo" src="/assets/images/logo-github.svg" alt="GitHub">
     </a>
     <a href="https://x.com/adr1an0s0ar3s" target="_blank" title="X">
